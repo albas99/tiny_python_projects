@@ -64,5 +64,21 @@ def test_more_than_two_sorted():
 
     arg = 'bananas apples dates cherries'
     out = getoutput(f'{prg} {arg} --sorted')
-    expected = ('You are bringing apples, bananas, cherries, and dates.')
+    expected = 'You are bringing apples, bananas, cherries, and dates.'
+    assert out.strip() == expected
+
+def test_with_no_comma():
+    """with no comma"""
+
+    arg = 'bananas apples dates cherries'
+    out = getoutput(f'{prg} {arg} --no_comma --sorted')
+    expected = 'You are bringing apples bananas cherries and dates.'
+    assert out.strip() == expected
+
+def test_with_semicolon():
+    """with semicolon"""
+
+    arg = 'bananas apples dates cherries'
+    out = getoutput(f'{prg} {arg} --semicolon --sorted')
+    expected = 'You are bringing apples; bananas; cherries; and dates.'
     assert out.strip() == expected

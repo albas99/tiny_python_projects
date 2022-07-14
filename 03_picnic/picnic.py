@@ -21,6 +21,18 @@ def get_args():
         help='Sort items',
         action='store_true'
     )
+    parser.add_argument(
+        '-nc',
+        '--no_comma',
+        help='No comma between items',
+        action='store_true'
+    )
+    parser.add_argument(
+        '-sc',
+        '--semicolon',
+        help='Use semicolon instead of comma',
+        action='store_true'
+    )
 
     return parser.parse_args()
 
@@ -32,6 +44,8 @@ def main():
     items = args.items
     if args.sorted:
         items.sort()
+    no_comma = args.no_comma
+    semicolon = args.semicolon
 
     if len(items) == 1:
         result = f"You are bringing {items[0]}."
@@ -40,9 +54,18 @@ def main():
         result = f"You are bringing {items[0]} and {items[1]}."
         print(result)
     if len(items) > 2:
-        stuff = ', '.join(items[:-1])
-        result = f"You are bringing {stuff}, and {items[-1]}."
-        print(result)
+        if no_comma:
+            stuff = ' '.join(items[:-1])
+            result = f"You are bringing {stuff} and {items[-1]}."
+            print(result)
+        elif semicolon:
+            stuff = '; '.join(items[:-1])
+            result = f"You are bringing {stuff}; and {items[-1]}."
+            print(result)
+        else:
+            stuff = ', '.join(items[:-1])
+            result = f"You are bringing {stuff}, and {items[-1]}."
+            print(result)
 
 
 if __name__ == "__main__":
