@@ -20,13 +20,18 @@ def get_args():
 
     parser.add_argument('input',
                         metavar='str',
-                        help='Text Input: either a string or from a file')
+                        help='Text Input: either a string or from a file',
+                        nargs='+')
     parser.add_argument('-o',
                         '--outfile',
                         help='The output saved in a file',
                         metavar='str',
                         type=str,
                         default='')
+    parser.add_argument('-lc',
+                        '--lowercase',
+                        help='Set to lower case',
+                        action='store_true')
 
     args = parser.parse_args()
 
@@ -43,11 +48,11 @@ def main():
     args = get_args()
     file_arg = args.outfile
     input_arg = args.input
-
-    # result = open(file_arg, 'wt') if file_arg else sys.stdout
-    # result.write(input_arg.upper() + '\n')
-    # result.close()
-    result = input_arg.upper()
+    lower_case = args.lowercase
+    if lower_case:
+        result = input_arg.lower()
+    else:
+        result = input_arg.upper()
 
     if file_arg:
         with open(file_arg, 'wt', encoding='utf8') as o_f:

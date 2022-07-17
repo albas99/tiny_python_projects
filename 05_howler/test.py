@@ -18,6 +18,11 @@ def random_string():
     return ''.join(random.choices(string.ascii_letters + string.digits, k=k))
 
 
+def lc_flag():
+    """Either -lc or --lowercase"""
+    return '-lc' if random.randint(0, 1) else '--lowercase'
+
+
 # --------------------------------------------------
 def out_flag():
     """Either -o or --outfile"""
@@ -48,6 +53,30 @@ def test_text_stdout():
 
     out = getoutput(f'{prg} "foo bar baz"')
     assert out.strip() == 'FOO BAR BAZ'
+
+
+def test_lower_case():
+    """Test Lower case flag"""
+    out = getoutput(f'{prg} {lc_flag()} "FOO BAR BAZ"')
+    assert out.strip() == 'foo bar baz'
+
+
+def test_outfile_lower_case():
+    """Test STDIN/outfile lower case"""
+
+    out_file = random_string()
+    if os.path.isfile(out_file):
+        os.remove(out_file)
+
+    try:
+        out = getoutput(f'{prg} {out_flag()} {out_file} {lc_flag()} "FOO BAR BAZ"')
+        assert out.strip() == ''
+        assert os.path.isfile(out_file)
+        text = open(out_file).read().rstrip()
+        assert text == 'foo bar baz'
+    finally:
+        if os.path.isfile(out_file):
+            os.remove(out_file)
 
 
 # --------------------------------------------------
