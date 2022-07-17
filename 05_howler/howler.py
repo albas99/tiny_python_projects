@@ -7,7 +7,6 @@ Purpose: Rock the Casbah
 
 import argparse
 
-
 # --------------------------------------------------
 import os.path
 
@@ -44,13 +43,17 @@ def main():
     args = get_args()
     file_arg = args.outfile
     input_arg = args.input
+
+    # result = open(file_arg, 'wt') if file_arg else sys.stdout
+    # result.write(input_arg.upper() + '\n')
+    # result.close()
     result = input_arg.upper()
 
     if file_arg:
-        o_f = open(f'{file_arg}', 'wt')
-        o_f.write(f'{result}\n')
-        o_f.close()
-    print(result)
+        with open(file_arg, 'wt', encoding='utf8') as o_f:
+            o_f.write(result)
+    else:
+        print(result)
 
 
 # --------------------------------------------------
