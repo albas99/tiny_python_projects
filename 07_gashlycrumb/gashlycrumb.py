@@ -38,18 +38,23 @@ def main():
     letters = args.letters
     file = args.file
     sentences = {}
-    for line in file:
-        sentences[line[0]] = line
-    for letter in letters:
-        letter = letter.upper()
-        if letter in sentences:
-            print(sentences[letter], end='')
+    while True:
+        letters = input("Please provide a letter: ")
+        if letters == "!":
+            print('Bye')
+            exit()
         else:
-            print(f"I do not know \"{letter}\".")
+            for line in file:
+                sentences[line[0]] = line
+            for letter in letters:
+                letter = letter.upper()
+                if letter in sentences:
+                    print(sentences[letter], end='')
+                else:
+                    print(f"I do not know \"{letter}\".")
     # for letter in letters:
     #     if letter in sentences:
     #         print(sentences[letter])
-
 
 
 # --------------------------------------------------
