@@ -40,6 +40,17 @@ def random_string():
     return ''.join(random.choices(string.ascii_letters + string.digits, k=k))
 
 
+# def line():
+#     return '-l' if random.randint(0, 1) else '--line'
+#
+#
+# def bytes_flag():
+#     return '-b' if random.randint(0, 1) else '--bytes'
+#
+# def words():
+#     return '-w' if random.randint(0, 1) else '--words'
+
+
 # --------------------------------------------------
 def test_bad_file():
     """bad_file"""
@@ -105,3 +116,22 @@ def test_stdin():
     rv, out = getstatusoutput(f'{prg} < {fox}')
     assert rv == 0
     assert out.rstrip() == '       1       9      45 <stdin>'
+
+#
+# def test_line_only():
+#     rv, out = getstatusoutput(f'{prg} < {fox} {line()}')
+#     assert rv == 0
+#     assert out.rstrip() == '       1 ../inputs/fox.txt'
+#
+#
+# def test_bytes_only():
+#     rv, out = getstatusoutput(f'{prg} < {fox} {bytes_flag()}')
+#     assert rv == 0
+#     assert out.rstrip() == '        45 ../inputs/fox.txt'
+#
+#
+# def test_words_only():
+#     rv, out = getstatusoutput(f'{prg} < {fox} {words()}')
+#     assert rv == 0
+#     assert out.rstrip() == '        9 ../inputs/fox.txt'
+
