@@ -42,19 +42,15 @@ def main():
         letters = input("Please provide a letter: ")
         if letters == "!":
             print('Bye')
-            exit()
-        else:
-            for line in file:
-                sentences[line[0]] = line
-            for letter in letters:
-                letter = letter.upper()
-                if letter in sentences:
-                    print(sentences[letter], end='')
-                else:
-                    print(f"I do not know \"{letter}\".")
-    # for letter in letters:
-    #     if letter in sentences:
-    #         print(sentences[letter])
+            break
+        for line in file:
+            sentences[line[0]] = line
+        for letter in letters:
+            letter = letter.upper()
+            if letter in sentences:
+                print(sentences[letter], end='')
+            else:
+                print(f"I do not know \"{letter}\".")
 
 
 # --------------------------------------------------
