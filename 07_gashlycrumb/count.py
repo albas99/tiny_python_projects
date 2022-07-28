@@ -32,7 +32,6 @@ def main():
 
     args = get_args()
     file = args.file
-    lookup = {}
     num_words = []
     all_words = []
     print(type(num_words))
@@ -46,8 +45,7 @@ def main():
         num_words.append(word_count)
     count_pairs = dict(list(zip(all_words, num_words)))
     pprint(count_pairs)
-    # print(all_words)
-    # pprint(lookup)
+
 
 # --------------------------------------------------
 if __name__ == '__main__':
