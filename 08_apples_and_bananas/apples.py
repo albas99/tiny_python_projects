@@ -9,6 +9,9 @@ import argparse
 
 
 # --------------------------------------------------
+import os.path
+
+
 def get_args():
     """Get command-line arguments"""
 
@@ -28,14 +31,12 @@ def get_args():
                         default='a',
                         choices=['a', 'e', 'i', 'o', 'u'])
 
-    parser.add_argument('-f',
-                        '--file',
-                        help='A readable file input',
-                        metavar='FILE',
-                        type=argparse.FileType('rt'),
-                        default=None)
+    args = parser.parse_args()
 
-    return parser.parse_args()
+    if os.path.isfile(args.text):
+        args.text = open(args.text).read().rstrip()
+
+    return args
 
 
 # --------------------------------------------------
@@ -45,16 +46,7 @@ def main():
     args = get_args()
     text = args.text
     vowel = args.vowel
-    file = args.file
     vowels = ['a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U']
-
-
-
-    if file:
-        for line in file:
-            for char in line:
-                if char in vowels:
-                    print(line.replace(char, vowel))
 
     for char in text:
         if text.isupper():
