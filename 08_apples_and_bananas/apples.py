@@ -43,10 +43,12 @@ def main():
     """Make a jazz noise here"""
 
     args = get_args()
-    text = args.text.lower()
+    text = args.text
     vowel = args.vowel
     file = args.file
-    vowels = ['a', 'e', 'i', 'o', 'u']
+    vowels = ['a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U']
+
+
 
     if file:
         for line in file:
@@ -55,6 +57,8 @@ def main():
                     print(line.replace(char, vowel))
 
     for char in text:
+        if text.isupper():
+            vowel = vowel.upper()
         if char in vowels:
             text = text.replace(char, vowel)
     print(text)
