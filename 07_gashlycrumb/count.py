@@ -7,7 +7,7 @@ Purpose: Rock the Casbah
 
 import argparse
 from pprint import pprint
-import re
+
 
 # --------------------------------------------------
 def get_args():
