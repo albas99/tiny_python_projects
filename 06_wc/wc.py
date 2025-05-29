@@ -37,7 +37,7 @@ def get_args():
     #                     '--words',
     #                     help='Output number of words only',
     #                     action='store_true')
-    # return parser.parse_args()
+    return parser.parse_args()
 
 
 # --------------------------------------------------

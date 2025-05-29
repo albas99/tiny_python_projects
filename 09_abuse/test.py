@@ -20,7 +20,7 @@ def test_exists():
 # --------------------------------------------------
 def test_usage():
     """usage"""
-
+    # TODO: Refactor all rv to return_value
     for flag in ['-h', '--help']:
         rv, out = getstatusoutput(f'{prg} {flag}')
         assert rv == 0
@@ -131,3 +131,14 @@ def random_string():
     """generate a random filename"""
 
     return ''.join(random.choices(string.ascii_lowercase + string.digits, k=5))
+
+
+# ----------------------------------------------------
+# def test_bad_file():
+#     """bad_file"""
+
+#     bad_adj = f'{random_string()}.txt'
+#     bad_noun = f'{random_string()}.txt'
+#     rv, out = getstatusoutput(f'{prg} -aa {bad_adj} -an {bad_noun}')
+#     assert rv != 0
+#     assert re.search(f"No such files or directories: '{bad_adj}', '{bad_noun}'", out)
